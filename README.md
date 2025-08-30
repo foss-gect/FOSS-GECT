@@ -11,3 +11,4 @@
 
 - Other pages
 - Responsiveness
+- navbar functionality
