@@ -1,7 +1,8 @@
-.landing-page-bg{
-
-    background: url('/images/landing_page_2.png') no-repeat center center fixed;
+.landing-page-bg {
+    background: url('/images/landing_page_2.png') no-repeat center center;
     background-size: cover;
+    background-attachment: scroll;
+    /* scrolls with content */
 }
 
 /* Reduce the number of grid lines */
