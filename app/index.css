@@ -1,0 +1,12 @@
+.landing-page-bg{
+
+    background: url('/images/landing_page_2.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Reduce the number of grid lines */
+.landing-page-bg canvas,
+.reduced-grid canvas {
+    background-size: 100px 100px;
+    /* increase spacing between grid lines */
+}
