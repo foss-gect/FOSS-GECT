@@ -5,10 +5,11 @@
 :trollface:
 
 ## Landing Page!
+
 ![alt text](image.png)
 
 ## TODO
 
 - Other pages
 - Responsiveness
-- navbar functionality
+- add instagram scroll thingy
