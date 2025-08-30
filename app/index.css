@@ -11,3 +11,9 @@
     background-size: 100px 100px;
     /* increase spacing between grid lines */
 }
+
+/* Gradient background image for intro section */
+.intro-page {
+    background: url('/images/home_page.png') no-repeat center center fixed;
+    background-size: cover;
+}

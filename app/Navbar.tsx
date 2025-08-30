@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-black/90 backdrop-blur-md">
-      <div className="flex items-center justify-between max-w-9xl mx-auto">
+      <div className="flex items-center justify-between max-w-full mx-auto">
         {/* Logo */}
         <div className="text-white text-xl font-extrabold tracking-wider">
           FOSS GECT

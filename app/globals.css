@@ -129,6 +129,19 @@
    font-display: swap;
  }
 
+ @font-face {
+   font-family: 'Aventi';
+   src:
+     url('/fonts/Aventi-Bold.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+ }
  .cabinet-font {
    font-family: 'Cabinet', sans-serif;
  }
+
+  
+    .aventi-font {
+      font-family: 'Aventi', sans-serif;
+    }
