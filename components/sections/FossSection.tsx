@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF, THREE } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef } from "react";
 import { Squares } from "@/components/ui/shadcn-io/squares-background";
 
@@ -81,10 +81,7 @@ const FossSection = () => {
             <ambientLight intensity={0.6} />
             <directionalLight position={[5, 5, 5]} intensity={0.8} />
             <Penguin />
-            <OrbitControls
-              enablePan={true} // optional, disables panning
-              enableZoom={true} // allows zooming
-              enableRotate={true} // allows user rotation
+            <OrbitControls // allows user rotation
             />
           </Canvas>
         </div>
