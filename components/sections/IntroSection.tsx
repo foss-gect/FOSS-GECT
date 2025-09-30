@@ -1,7 +1,7 @@
-'use client';
+"use client";
 import { Squares } from "@/components/ui/shadcn-io/squares-background";
 
-export const IntroSection = () => {
+const IntroSection = () => {
   return (
     <section
       id="intro"
@@ -26,10 +26,10 @@ export const IntroSection = () => {
             <h1 className="text-8xl font-bold">Hi</h1>
             <h2 className="text-6xl font-bold mb-6">From FOSS GECT</h2>
             <p className="text-xl cabinet-font font-medium leading-relaxed max-w-xl ">
-              FOSS GECT is a community of free and open-source enthusiasts at Government 
-              Engineering College Thrissur, promoting open collaboration, learning, and 
-              innovation. We aim to empower students to explore, contribute, and grow with 
-              open technologies.
+              FOSS GECT is a community of free and open-source enthusiasts at
+              Government Engineering College Thrissur, promoting open
+              collaboration, learning, and innovation. We aim to empower
+              students to explore, contribute, and grow with open technologies.
             </p>
           </div>
 
@@ -41,3 +41,4 @@ export const IntroSection = () => {
     </section>
   );
 };
+export default IntroSection;

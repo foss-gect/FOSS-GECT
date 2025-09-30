@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-export const ContactSection = () => {
+const ContactSection = () => {
   return (
     <section
       id="contact"
@@ -10,3 +10,4 @@ export const ContactSection = () => {
     </section>
   );
 };
+export default ContactSection;

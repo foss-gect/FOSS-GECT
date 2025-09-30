@@ -15,7 +15,7 @@ const events = [
   "Bug Fixing Sprint",
 ];
 
-export const EventsSection = () => {
+const EventsSection = () => {
   const leftEvents = events.slice(0, 4);
   const rightEvents = events.slice(4);
 
@@ -48,8 +48,9 @@ export const EventsSection = () => {
           {leftEvents.map((event, index) => (
             <motion.div
               key={event}
-              initial={{ x: -200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: -200, opacity: 0 }} // slide in from left
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{
                 delay: index * 0.15,
                 duration: 0.8,
@@ -122,11 +123,13 @@ export const EventsSection = () => {
 
         {/* Right cards */}
         <div className="flex flex-col gap-6 justify-center items-center">
+          {/* Right cards */}
           {rightEvents.map((event, index) => (
             <motion.div
               key={event}
-              initial={{ x: 200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 200, opacity: 0 }} // slide in from right
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{
                 delay: index * 0.15,
                 duration: 0.8,
@@ -187,3 +190,4 @@ export const EventsSection = () => {
     </section>
   );
 };
+export default EventsSection;

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 import { WarpBackground } from "@/components/ui/shadcn-io/warp-background";
 
-export const HomeSection = () => {
+const HomeSection = () => {
   return (
     <section id="home" className="relative h-screen snap-start">
       <WarpBackground
@@ -22,3 +22,4 @@ export const HomeSection = () => {
     </section>
   );
 };
+export default HomeSection;

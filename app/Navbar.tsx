@@ -1,16 +1,15 @@
-"use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+const links = [
+  { name: "Home", id: "home" },
+  { name: "About", id: "intro" },
+  { name: "Events", id: "events" },
+  { name: "Contact Us", id: "contact" },
+];
 const Navbar = () => {
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
-
-  const links = [
-    { name: "Home", id: "home" },
-    { name: "About", id: "intro" },
-    { name: "Events", id: "events" },
-    { name: "Contact Us", id: "contact" },
-  ];
+  const [allowObserver, setAllowObserver] = useState(false);
 
   const handleClick = (id: string) => {
     const section = document.getElementById(id);
@@ -20,7 +19,30 @@ const Navbar = () => {
     setActive(id);
     setIsOpen(false);
   };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
 
+    links.forEach((link) => {
+      const section = document.getElementById(link.id);
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      links.forEach((link) => {
+        const section = document.getElementById(link.id);
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-black/90 backdrop-blur-md">
       <div className="flex items-center justify-between max-w-full mx-auto">
