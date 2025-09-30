@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const links = [
     { name: "Home", id: "home" },
-    { name: "About", id: "about" },
+    { name: "About", id: "intro" },
     { name: "Events", id: "events" },
     { name: "Contact Us", id: "contact" },
   ];

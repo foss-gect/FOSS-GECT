@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -42,6 +41,15 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+  @keyframes background-position-spin {
+  0% {
+    background-position: top center;
+    }
+  100% {
+    background-position: bottom center;
+    }
+  }
 }
 
 :root {
@@ -141,7 +149,7 @@
  .cabinet-font {
    font-family: 'Cabinet', sans-serif;
  }
- 
+
     @font-face {
       font-family: 'Base Neue';
       src:
@@ -150,11 +158,11 @@
       font-style: normal;
       font-display: swap;
     }
-  
+
     .cabinet-font {
       font-family: 'Cabinet', sans-serif;
     }
-  
+
     .aventi-font {
       font-family: 'Aventi', sans-serif;
     }
