@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Squares } from "@/components/ui/shadcn-io/squares-background";
 
 import {
@@ -11,14 +11,14 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/shadcn-io/hover-card/hover-card";
 
-const Penguin = () => {
+const Penguin = ({ isUserInteracting }: { isUserInteracting: boolean }) => {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF("/models/linux-char.glb");
 
   useFrame((state, delta) => {
-    if (groupRef.current) {
-      // auto rotate around Y-axis
-      groupRef.current.rotation.y += delta * 1;
+    if (groupRef.current && !isUserInteracting) {
+      // rotate only when user is NOT interacting
+      groupRef.current.rotation.y += delta * 0.5;
     }
   });
 
@@ -30,6 +30,7 @@ const Penguin = () => {
 };
 
 const FossSection = () => {
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
   const faqs = [
     {
       q: "What is FOSS?",
@@ -74,14 +75,22 @@ const FossSection = () => {
         className="relative h-screen w-full flex items-center justify-center"
       >
         {/* 3D Model in the Center */}
-        <div className="absolute w-[300px] h-[300px]">
+        <div className="absolute w-[300px] h-[300px] z-10">
           <Canvas
             camera={{ position: [4, 2, 4], fov: 45, near: 0.1, far: 400 }}
           >
             <ambientLight intensity={0.6} />
             <directionalLight position={[5, 5, 5]} intensity={0.8} />
-            <Penguin />
-            <OrbitControls // allows user rotation
+            <Penguin isUserInteracting={isUserInteracting} />
+            <OrbitControls
+              enableRotate={true}
+              rotateSpeed={0.5}
+              zoomSpeed={0.5}
+              panSpeed={0.5}
+              maxPolarAngle={Math.PI / 2}
+              minPolarAngle={0}
+              onStart={() => setIsUserInteracting(true)}
+              onEnd={() => setIsUserInteracting(false)}
             />
           </Canvas>
         </div>

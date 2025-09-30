@@ -197,7 +197,7 @@ const EventsSection = () => {
           {/* Image */}
           <div className="relative flex justify-center items-center">
             <Image
-              src="/images/upco.png"
+              src="/images/upcoming-events.png"
               alt="Upcoming Events at GEC"
               width={3000}
               height={1200}
