@@ -18,6 +18,10 @@ const ContactSection = dynamic(
   { ssr: false },
 );
 
+const FossSection = dynamic(() => import("@/components/sections/FossSection"), {
+  ssr: true,
+});
+
 export default function Home() {
   return (
     <div className="relative h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
@@ -27,6 +31,9 @@ export default function Home() {
       </section>
       <section id="intro" className="snap-start h-screen">
         <IntroSection />
+      </section>
+      <section id="foss" className="snap-start h-screen">
+        <FossSection />
       </section>
       <section id="events" className="snap-start h-screen">
         <EventsSection />
