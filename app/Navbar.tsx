@@ -1,57 +1,45 @@
-import { useEffect, useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
 
 const links = [
   { name: "Home", id: "home" },
   { name: "About", id: "intro" },
   { name: "Events", id: "events" },
-  { name: "Contact Us", id: "contact" },
+  { name: "Contact", id: "contact" },
 ];
-const Navbar = () => {
+
+export default function Navbar() {
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
-  const [allowObserver, setAllowObserver] = useState(false);
 
   const handleClick = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setActive(id);
-    setIsOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false); // close mobile menu
   };
+
   useEffect(() => {
+    const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { threshold: 0.5 },
+      { threshold: 0.6 },
     );
 
-    links.forEach((link) => {
-      const section = document.getElementById(link.id);
-      if (section) observer.observe(section);
-    });
+    sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      links.forEach((link) => {
-        const section = document.getElementById(link.id);
-        if (section) observer.unobserve(section);
-      });
-    };
+    return () => observer.disconnect();
   }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-black/90 backdrop-blur-md">
       <div className="flex items-center justify-between max-w-full mx-auto">
-        {/* Logo */}
         <div className="text-white text-xl font-extrabold tracking-wider">
           FOSS GECT
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-4">
           {links.map((link) => (
             <button
@@ -68,7 +56,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
@@ -98,7 +85,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden flex flex-col mt-4 space-y-2 bg-black/95 p-4 rounded-lg">
           {links.map((link) => (
@@ -118,6 +104,4 @@ const Navbar = () => {
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}

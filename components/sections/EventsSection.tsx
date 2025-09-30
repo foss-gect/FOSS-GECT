@@ -1,8 +1,9 @@
 "use client";
 
 import { FlickeringGrid } from "@/components/ui/shadcn-io/flickering-grid/flickering-grid";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 
 const events = [
   "Linux Installation Workshop",
@@ -24,7 +25,7 @@ const EventsSection = () => {
   return (
     <section
       id="events"
-      className="relative h-screen snap-start flex items-center justify-center overflow-hidden " // add top padding for navbar
+      className="relative h-screen snap-start flex items-center justify-center overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #000000, #A52858)",
       }}
@@ -45,68 +46,71 @@ const EventsSection = () => {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 w-full max-w-[1800px] pt-10 gap-8">
         {/* Left cards */}
         <div className="flex flex-col gap-6 justify-center items-center">
-          {leftEvents.map((event, index) => (
-            <motion.div
-              key={event}
-              initial={{ x: -200, opacity: 0 }} // slide in from left
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                delay: index * 0.15,
-                duration: 0.8,
-                type: "spring",
-              }}
-            >
-              <div
-                className="relative flex items-center justify-center rounded-xl overflow-hidden m-2"
-                style={{
-                  width: "200px",
-                  height: "150px",
-                  background: gradient,
-                  borderRadius: "16px",
-                  border: "2px solid transparent",
-                  padding: "2px",
+          {leftEvents.map((event, index) => {
+            const cardRef = useRef(null);
+            const isInView = useInView(cardRef, { once: true, amount: 0.3 });
+
+            return (
+              <motion.div
+                key={event}
+                ref={cardRef}
+                initial={{ x: -200, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : {}}
+                transition={{
+                  delay: index * 0.15,
+                  duration: 0.8,
+                  type: "spring",
                 }}
               >
-                {/* Inner black blurred container */}
                 <div
-                  className="flex items-center justify-center rounded-lg w-full h-full relative"
+                  className="relative flex items-center justify-center rounded-xl overflow-hidden m-2"
                   style={{
-                    background: "rgba(0,0,0,0.6)",
-                    backdropFilter: "blur(6px)",
+                    width: "200px",
+                    height: "150px",
+                    background: gradient,
+                    borderRadius: "16px",
+                    border: "2px solid transparent",
+                    padding: "2px",
                   }}
                 >
-                  <p className="z-10 font-semibold text-white text-center text-base">
-                    {event}
-                  </p>
+                  <div
+                    className="flex items-center justify-center rounded-lg w-full h-full relative"
+                    style={{
+                      background: "rgba(0,0,0,0.6)",
+                      backdropFilter: "blur(6px)",
+                    }}
+                  >
+                    <p className="z-10 font-semibold text-white text-center text-base">
+                      {event}
+                    </p>
 
-                  {/* Circle decorations */}
-                  <div
-                    className="absolute rounded-full"
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      background: gradient,
-                      bottom: "-36px",
-                      right: "-22px",
-                      opacity: 0.3,
-                    }}
-                  />
-                  <div
-                    className="absolute rounded-full"
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      background: gradient,
-                      top: "-7px",
-                      right: "-59px",
-                      opacity: 0.3,
-                    }}
-                  />
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        width: "120px",
+                        height: "120px",
+                        background: gradient,
+                        bottom: "-36px",
+                        right: "-22px",
+                        opacity: 0.3,
+                      }}
+                    />
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        width: "120px",
+                        height: "120px",
+                        background: gradient,
+                        top: "-7px",
+                        right: "-59px",
+                        opacity: 0.3,
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Center image */}
@@ -123,71 +127,75 @@ const EventsSection = () => {
 
         {/* Right cards */}
         <div className="flex flex-col gap-6 justify-center items-center">
-          {/* Right cards */}
-          {rightEvents.map((event, index) => (
-            <motion.div
-              key={event}
-              initial={{ x: 200, opacity: 0 }} // slide in from right
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                delay: index * 0.15,
-                duration: 0.8,
-                type: "spring",
-              }}
-            >
-              <div
-                className="relative flex items-center justify-center rounded-xl overflow-hidden m-2"
-                style={{
-                  width: "200px",
-                  height: "150px",
-                  background: gradient,
-                  borderRadius: "16px",
-                  border: "2px solid transparent",
-                  padding: "2px",
+          {rightEvents.map((event, index) => {
+            const cardRef = useRef(null);
+            const isInView = useInView(cardRef, { once: true, amount: 0.3 });
+
+            return (
+              <motion.div
+                key={event}
+                ref={cardRef}
+                initial={{ x: 200, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : {}}
+                transition={{
+                  delay: index * 0.15,
+                  duration: 0.8,
+                  type: "spring",
                 }}
               >
                 <div
-                  className="flex items-center justify-center rounded-lg w-full h-full relative"
+                  className="relative flex items-center justify-center rounded-xl overflow-hidden m-2"
                   style={{
-                    background: "rgba(0,0,0,0.6)",
-                    backdropFilter: "blur(6px)",
+                    width: "200px",
+                    height: "150px",
+                    background: gradient,
+                    borderRadius: "16px",
+                    border: "2px solid transparent",
+                    padding: "2px",
                   }}
                 >
-                  <p className="z-10 font-semibold text-white text-center text-base">
-                    {event}
-                  </p>
+                  <div
+                    className="flex items-center justify-center rounded-lg w-full h-full relative"
+                    style={{
+                      background: "rgba(0,0,0,0.6)",
+                      backdropFilter: "blur(6px)",
+                    }}
+                  >
+                    <p className="z-10 font-semibold text-white text-center text-base">
+                      {event}
+                    </p>
 
-                  {/* Circle decorations */}
-                  <div
-                    className="absolute rounded-full"
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      background: gradient,
-                      bottom: "-36px",
-                      right: "-22px",
-                      opacity: 0.3,
-                    }}
-                  />
-                  <div
-                    className="absolute rounded-full"
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      background: gradient,
-                      top: "-7px",
-                      right: "-59px",
-                      opacity: 0.3,
-                    }}
-                  />
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        width: "120px",
+                        height: "120px",
+                        background: gradient,
+                        bottom: "-36px",
+                        right: "-22px",
+                        opacity: 0.3,
+                      }}
+                    />
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        width: "120px",
+                        height: "120px",
+                        background: gradient,
+                        top: "-7px",
+                        right: "-59px",
+                        opacity: 0.3,
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
+
 export default EventsSection;

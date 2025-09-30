@@ -1,5 +1,4 @@
 "use client";
-
 import Navbar from "@/app/Navbar";
 import dynamic from "next/dynamic";
 
@@ -21,12 +20,20 @@ const ContactSection = dynamic(
 
 export default function Home() {
   return (
-    <div className="relative h-screen overflow-y-scroll snap-y snap-mandatory">
+    <div className="relative h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
       <Navbar />
-      <HomeSection />
-      <IntroSection />
-      <EventsSection />
-      <ContactSection />
+      <section id="home" className="snap-start h-screen">
+        <HomeSection />
+      </section>
+      <section id="intro" className="snap-start h-screen">
+        <IntroSection />
+      </section>
+      <section id="events" className="snap-start h-screen">
+        <EventsSection />
+      </section>
+      <section id="contact" className="snap-start h-screen">
+        <ContactSection />
+      </section>
     </div>
   );
 }
