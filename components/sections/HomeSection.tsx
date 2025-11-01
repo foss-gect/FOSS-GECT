@@ -1,7 +1,17 @@
 "use client";
+import { useEffect, useState } from "react";
 import { WarpBackground } from "@/components/ui/shadcn-io/warp-background";
 
 const HomeSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size on mount + resize
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   return (
     <section id="home" className="relative h-screen snap-start">
       <WarpBackground
@@ -9,7 +19,7 @@ const HomeSection = () => {
         gridColor="transparent"
         beamSize={15}
         beamsPerSide={10}
-        perspective={2400}
+        perspective={isMobile ? 2000 : 2400}
         beamDelayMin={0}
         beamDelayMax={4}
         beamDuration={3}

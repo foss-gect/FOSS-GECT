@@ -124,7 +124,7 @@ const EventsSection = () => {
   return (
     <section
       id="events"
-      className="relative min-h-screen snap-start flex items-center justify-center overflow-hidden py-12"
+      className="relative min-h-[90vh] snap-start flex items-center justify-center overflow-hidden py-12"
       style={{ background: "linear-gradient(180deg, #000000, #A52858)" }}
     >
       {/* Flickering background */}

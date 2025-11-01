@@ -1,5 +1,5 @@
 .landing-page-bg {
-    background: url('/images/landing_page_2.png') no-repeat center center;
+    background: url("/images/landing_page_2.png") no-repeat center center;
     background-size: cover;
     background-attachment: scroll;
     /* scrolls with content */
@@ -14,7 +14,63 @@
 
 /* Gradient background image for intro section */
 .intro-page {
-    background: url('/images/home_page.png') no-repeat center center fixed;
+    background: url("/images/home_page.png") no-repeat center center fixed;
     background-size: cover;
 }
+* {
+    box-sizing: border-box;
+}
 
+.split-container {
+    position: relative;
+    width: 280px;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.split-container h1 {
+    position: absolute;
+    text-align: center;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6em;
+    background-color: #0a0a0a;
+    width: 100%;
+    line-height: 1.1em;
+    transition: 0.3s ease;
+}
+
+.split-container p {
+    color: #ff3c78;
+    font-size: 0.9em;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease;
+}
+
+.split-container:hover p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.split-container h1:nth-child(2) {
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.split-container h1:nth-child(3) {
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.split-container:hover h1:nth-child(2) {
+    transform: translateY(-12px);
+}
+
+.split-container:hover h1:nth-child(3) {
+    transform: translateY(12px);
+}

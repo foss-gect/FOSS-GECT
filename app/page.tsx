@@ -13,14 +13,15 @@ const EventsSection = dynamic(
   () => import("@/components/sections/EventsSection"),
   { ssr: false },
 );
-const ContactSection = dynamic(
-  () => import("@/components/sections/ContactSection"),
-  { ssr: false },
-);
-
 const FossSection = dynamic(() => import("@/components/sections/FossSection"), {
-  ssr: true,
+  ssr: false,
 });
+const FooterSection = dynamic(
+  () => import("@/components/sections/FooterSection"),
+  {
+    ssr: false,
+  },
+);
 
 export default function Home() {
   return (
@@ -35,11 +36,15 @@ export default function Home() {
       <section id="foss" className="snap-start h-screen">
         <FossSection />
       </section>
-      <section id="events" className="snap-start h-screen">
+      <section id="events" className="snap-start ">
         <EventsSection />
       </section>
-      <section id="contact" className="snap-start h-screen">
-        <ContactSection />
+      <section
+        id="footer"
+        className="snap-start h-15 flex items-center justify-center bg-gray-800 text-white"
+      >
+        {" "}
+        <FooterSection />
       </section>
     </div>
   );
