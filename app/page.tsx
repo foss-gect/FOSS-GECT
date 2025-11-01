@@ -14,7 +14,7 @@ const EventsSection = dynamic(
   { ssr: false },
 );
 const FossSection = dynamic(() => import("@/components/sections/FossSection"), {
-  ssr: false,
+  ssr: true,
 });
 const FooterSection = dynamic(
   () => import("@/components/sections/FooterSection"),
